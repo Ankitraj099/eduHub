@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16x16.png">
+    <link rel="manifest" href="../assets/site.webmanifest">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- google fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Londrina+Sketch&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+
+    <!-- fonts for headinds  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- font-awesome cdn  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>Course Details - Eduhub</title>
+
+    <!-- stylings  -->
+    <link rel="stylesheet" href="../css/commanstyle.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/contact.css">
+    <style>
+        .course-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 50px;
+        }
+        .course-content {
+            padding: 50px 0;
+        }
+        .course-features {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .course-features i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        .enroll-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .enroll-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header section start  -->
+    <header id="feature_header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand logo text-white" href="../index.html">
+                    <img src="../assets/logo.png" alt="Eduhub logo" height="30px"> Edu<span>hub</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link text-white" href="../index.html">Home</a>
+                        <a class="nav-link text-white" href="features.html">Features</a>
+                        <a class="nav-link text-white active" href="courses.html">Courses</a>
+                        <a class="nav-link text-white" href="contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- header section end  -->
+
+    <div id="course-details">
+        <!-- Course details will be dynamically loaded here -->
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        // Get course ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseId = urlParams.get('course');
+
+        // Course data
+        const courses = {
+            'web-design': {
+                title: 'Web Design',
+                image: 'https://cdn.pixabay.com/photo/2016/09/14/08/26/web-1668927_1280.jpg',
+                description: 'Dive deep into the world of modern web design. This comprehensive course covers everything from the foundational languages of HTML5 and CSS3 to advanced topics like responsive design, front-end frameworks (like Bootstrap), and essential JavaScript for interactive elements. You will also learn core UI/UX principles to create intuitive and engaging user experiences. Hands-on projects throughout the course will help you build a strong portfolio.',
+                duration: '12 weeks',
+                level: 'Beginner to Advanced',
+                price: '₹12,999',
+                features: [
+                    'HTML5 & CSS3 Fundamentals',
+                    'Responsive Web Design',
+                    'JavaScript & jQuery',
+                    'UI/UX Design Principles',
+                    'Bootstrap Framework',
+                    'Project-based Learning'
+                ]
+            },
+            'java': {
+                title: 'Java Development',
+                image: '../assets/java.jpg',
+                description: 'Become a proficient Java developer with this in-depth course. We will cover core Java concepts, including object-oriented programming principles, data structures, and algorithms. You will then move on to enterprise application development using the popular Spring Framework, learn database integration (SQL/NoSQL), build RESTful web services, and understand best practices for building scalable and maintainable applications.',
+                duration: '16 weeks',
+                level: 'Intermediate',
+                price: '₹15,999',
+                features: [
+                    'Core Java Programming',
+                    'Object-Oriented Programming',
+                    'Spring Framework',
+                    'Database Integration',
+                    'RESTful Web Services',
+                    'Enterprise Application Development'
+                ]
+            },
+            'python': {
+                title: 'Python Programming',
+                image: '../assets/python.jpg',
+                description: 'Explore the versatility of Python programming. This course starts with the basics, making it suitable for beginners, and progresses to advanced topics. You will learn core Python syntax, data types, and control flow. We will then delve into data science libraries (like NumPy and Pandas), introduce machine learning concepts, and cover web development using the Django framework. Build practical projects to solidify your understanding.',
+                duration: '14 weeks',
+                level: 'Beginner to Advanced',
+                price: '₹13,999',
+                features: [
+                    'Python Fundamentals',
+                    'Data Structures & Algorithms',
+                    'Web Development with Django',
+                    'Data Science & Analysis',
+                    'Machine Learning Basics',
+                    'Project Portfolio Development'
+                ]
+            },
+            'data-science': {
+                title: 'Data Science',
+                image: 'https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406_1280.jpg',
+                description: 'Unlock the power of data with our comprehensive Data Science course. You will master data analysis, cleaning, visualization, and interpretation using industry-standard tools and libraries in Python and R. The course covers key statistical concepts and introduces various machine learning algorithms. Learn how to work with big data and apply your skills to real-world data science projects.',
+                duration: '16 weeks',
+                level: 'Intermediate to Advanced',
+                price: '₹17,999',
+                features: [
+                    'Data Analysis with Python and R',
+                    'Statistical Analysis',
+                    'Data Visualization',
+                    'Machine Learning Algorithms',
+                    'Big Data Processing',
+                    'Real-world Data Science Projects'
+                ]
+            },
+            'ui-ux': {
+                title: 'UI/UX Design',
+                image: 'https://cdn.pixabay.com/photo/2017/01/22/12/07/imac-1999636_1280.png',
+                description: 'Design intuitive and engaging digital experiences with this UI/UX Design course. Learn the fundamental principles of user interface and user experience design, including user research methods, creating wireframes, building interactive prototypes, and conducting user testing. You will gain proficiency in popular design tools like Figma and Adobe XD and develop a professional design portfolio.',
+                duration: '12 weeks',
+                level: 'Beginner to Intermediate',
+                price: '₹14,999',
+                features: [
+                    'UI Design Principles',
+                    'UX Research Methods',
+                    'Wireframing & Prototyping',
+                    'Figma & Adobe XD',
+                    'User Testing & Feedback',
+                    'Portfolio Development'
+                ]
+            },
+            'cloud': {
+                title: 'Cloud Computing',
+                image: 'https://cdn.pixabay.com/photo/2018/03/27/21/43/startup-3267505_1280.jpg',
+                description: 'Master the leading cloud platforms: AWS, Azure, and Google Cloud. This course provides a deep understanding of cloud architecture, deployment models, and core cloud services (compute, storage, networking, databases). You will learn how to deploy and manage applications in the cloud, explore DevOps practices in cloud environments, and understand cloud security and compliance.',
+                duration: '14 weeks',
+                level: 'Intermediate',
+                price: '₹16,999',
+                features: [
+                    'Cloud Architecture Fundamentals',
+                    'AWS Services & Solutions',
+                    'Azure Cloud Platform',
+                    'Google Cloud Platform',
+                    'DevOps & CI/CD',
+                    'Cloud Security & Compliance'
+                ]
+            },
+            'mobile': {
+                title: 'Mobile App Development',
+                image: 'https://cdn.pixabay.com/photo/2018/05/08/08/44/artificial-intelligence-3382507_1280.jpg',
+                description: 'Build native and cross-platform mobile applications. This course covers development for both iOS using Swift and Android using Kotlin. You will also learn cross-platform development with React Native, allowing you to build apps for both platforms from a single codebase. Master mobile UI/UX design principles, app deployment to the App Store and Google Play, and mobile app testing.',
+                duration: '16 weeks',
+                level: 'Beginner to Advanced',
+                price: '₹15,999',
+                features: [
+                    'iOS Development with Swift',
+                    'Android Development with Kotlin',
+                    'Cross-platform Development',
+                    'Mobile UI/UX Design',
+                    'App Store Deployment',
+                    'Mobile App Testing'
+                ]
+            },
+            'ml': {
+                title: 'Machine Learning',
+                image: 'https://cdn.pixabay.com/photo/2018/05/08/08/44/artificial-intelligence-3382507_1280.jpg',
+                description: 'Gain a deep understanding of Machine Learning concepts and applications. This advanced course explores various ML algorithms, neural networks, and artificial intelligence techniques. You will get hands-on experience with popular deep learning frameworks like TensorFlow and PyTorch and apply your knowledge to computer vision and natural language processing tasks. Develop AI projects to showcase your expertise.',
+                duration: '16 weeks',
+                level: 'Advanced',
+                price: '₹18,999',
+                features: [
+                    'Machine Learning Algorithms',
+                    'Deep Learning & Neural Networks',
+                    'TensorFlow & PyTorch',
+                    'Computer Vision',
+                    'Natural Language Processing',
+                    'AI Project Development'
+                ]
+            },
+            'networks': {
+                title: 'Computer Networks',
+                image: '../assets/computernetwork.jpg',
+                description: 'Master the fundamental concepts of computer networks. This course covers network architectures (like TCP/IP and OSI models), essential network protocols (HTTP, TCP, UDP, IP), routing and switching concepts, and network security principles. You will learn about different network types (LAN, WAN), wireless networks, and gain practical skills in network administration and troubleshooting.',
+                duration: '16 weeks',
+                level: 'Intermediate to Advanced',
+                price: '₹16,999',
+                features: [
+                    'Network Fundamentals and OSI Model',
+                    'TCP/IP Protocol Suite',
+                    'Routing and Switching',
+                    'Network Security and Firewalls',
+                    'Wireless Networks and Mobile Computing',
+                    'Network Administration and Troubleshooting'
+                ]
+            },
+            'data-structures': {
+                title: 'Data Structures',
+                image: 'https://cdn.pixabay.com/photo/2016/11/19/14/00/code-1839406_1280.jpg',
+                description: 'Master fundamental data structures and algorithms. Learn arrays, linked lists, trees, graphs, and their applications in problem-solving.',
+                duration: '14 weeks',
+                level: 'Intermediate',
+                price: '₹13,999',
+                features: [
+                    'Arrays and Linked Lists',
+                    'Stacks and Queues',
+                    'Trees and Binary Search Trees',
+                    'Graphs and Graph Algorithms',
+                    'Hash Tables and Dictionaries',
+                    'Advanced Algorithm Analysis'
+                ]
+            }
+        };
+
+        // Function to load course details
+        function loadCourseDetails() {
+            const course = courses[courseId];
+            if (!course) {
+                window.location.href = 'courses.html';
+                return;
+            }
+
+            document.title = `${course.title} - Eduhub`;
+            
+            const courseDetails = document.getElementById('course-details');
+            courseDetails.innerHTML = `
+                <div class="course-header" style="--bg-image: url('${course.image}')">
+                    <div class="container text-center">
+                        <h1 class="display-4 mb-4">${course.title}</h1>
+                        <p class="lead">${course.description}</p>
+                    </div>
+                </div>
+
+                <div class="container course-content">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h2 class="mb-4">Course Overview</h2>
+                            <p>${course.description}</p>
+                            
+                            <div class="course-features mt-5">
+                                <h3 class="mb-4">What You'll Learn</h3>
+                                <ul class="list-unstyled">
+                                    ${course.features.map(feature => `
+                                        <li class="mb-3">
+                                            <i class="fas fa-check-circle"></i>
+                                            ${feature}
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                            
+                            <section class="d-flex justify-content-center py-4">
+                                <form id="enrollmentForm" class="form border shadow">
+                                    <p class="title">Enrollment Form</p>
+                                    <label>
+                                        <input required placeholder="" type="text" class="input" id="fullName" />
+                                        <span>Full Name</span>
+                                    </label>
+                            
+                                    <label>
+                                        <input required placeholder="" type="email" class="input" id="email" />
+                                        <span>Email</span>
+                                    </label>
+                                        
+                                    <label>
+                                        <input placeholder="" type="tel" class="input" id="phone" />
+                                        <span>Phone Number</span>
+                                    </label>
+                                    <label>
+                                        <textarea placeholder="" class="input" id="message" rows="3"></textarea>
+                                        <span>Message</span>
+                                    </label>
+                                    <button type="submit" class="submit">Submit Enrollment</button>
+                                </form>
+                            </section>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="card-title mb-4">Course Details</h3>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-3">
+                                            <i class="fas fa-clock"></i>
+                                            Duration: ${course.duration}
+                                        </li>
+                                        <li class="mb-3">
+                                            <i class="fas fa-signal"></i>
+                                            Level: ${course.level}
+                                        </li>
+                                        <li class="mb-3">
+                                            <i class="fas fa-tag"></i>
+                                            Price: ${course.price}
+                                        </li>
+                                    </ul>
+                                    <button class="enroll-btn w-100">Enroll Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Add event listener to the enrollment form after it's loaded
+            const enrollmentForm = document.getElementById('enrollmentForm');
+            if (enrollmentForm) {
+                enrollmentForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent actual form submission
+                    alert('Thank you for your enrollment submission! We will contact you shortly.');
+                    // Here you would typically send the form data to a backend
+                    window.location.href = '../index.html'; // Redirect to homepage
+                });
+            }
+        }
+
+        // Load course details when page loads
+        window.onload = loadCourseDetails;
+    </script>
+
+    <!-- footer section start  -->
+    <footer class="section bg-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Information</h6>
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><a href="">Pages</a></li>
+                            <li><a href="">Our Team</a></li>
+                            <li><a href="">Feuchers</a></li>
+                            <li><a href="">Pricing</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Ressources</h6>
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><a href="">Monitoring Grader </a></li>
+                            <li><a href="">Video Tutorial</a></li>
+                            <li><a href="">Term &amp; Service</a></li>
+                            <li><a href="">Zeeko API</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Help</h6>
+                        <ul class="list-unstyled footer-link mt-4">
+                            <li><a href="">Sign Up </a></li>
+                            <li><a href="">Login</a></li>
+                            <li><a href="">Terms of Services</a></li>
+                            <li><a href="">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="">
+                        <h6 class="footer-heading text-uppercase text-white">Contact Us</h6>
+                        <p class="contact-info mt-4">Contact us if need help withanything</p>
+                        <p class="contact-info">+01 123-456-7890</p>
+                        <div class="mt-5">
+                            <ul class="list-inline">
+                                <li class="list-inline-item"><a href="#"><i
+                                            class="fab facebook footer-social-icon fa-facebook-f"></i></i></a></li>
+                                <li class="list-inline-item"><a href="#"><i
+                                            class="fab twitter footer-social-icon fa-twitter"></i></i></a></li>
+                                <li class="list-inline-item"><a href="#"><i
+                                            class="fab google footer-social-icon fa-google"></i></i></a></li>
+                                <li class="list-inline-item"><a href="#"><i
+                                            class="fab apple footer-social-icon fa-apple"></i></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="text-center mt-5">
+            <p class="footer-alt mb-0 f-14">2024 © Incapp, All Rights Reserved</p>
+        </div>
+    </footer>
+    <!-- footer section end  -->
+
+</body>
+
+</html> 
